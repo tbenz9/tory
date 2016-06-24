@@ -3,7 +3,7 @@ import socket
 import fcntl
 import struct
 
-#function that obtains the MAC Address
+#function that obtains the MAC Address 
 def getHwAddr(ifname): 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
     info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', ifname[:15])) 
