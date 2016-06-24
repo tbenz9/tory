@@ -17,4 +17,4 @@ def get_disk_partitions():
         count += 1
     return disk_info
 
-pprint.pprint(get_disk_partitions())
+#pprint.pprint(get_disk_partitions())
