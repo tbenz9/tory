@@ -10,6 +10,7 @@ from util import AliasedArgumentParser, AliasedSubParsersAction
 
 import inventory
 import network
+import cpu
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -36,6 +37,10 @@ def parse_input():
     sub_get_network = subparsers.add_parser('network',
                                               aliases=['net'],
                                               help='Get info on network')
+    #get cpu
+    sub_get_cpu = subparsers.add_parser('cpu', 
+                                              aliases=['cpu'], 
+                                              help='Get info on CPU')
 
     args = parser.parse_args()
     return args
