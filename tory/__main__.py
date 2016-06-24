@@ -32,6 +32,11 @@ def parse_input():
     sub_get_disks = subparsers.add_parser('disks',
                                               aliases=['disk'],
                                               help='Get info on disks')
+    # get network
+    sub_get_network = subparsers.add_parser('network',
+                                              aliases=['net'],
+                                              help='Get info on network')
+
     args = parser.parse_args()
     return args
 
@@ -39,7 +44,7 @@ def main():
     args = parse_input()
     if args.command == 'disks':
         pprint.pprint(inventory.get_disk_partitions())
-    if args.command == 'disks':
+    if args.command == 'network':
         pprint.pprint(network.get_network_info())
 
 if __name__ == '__main__':

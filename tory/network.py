@@ -23,7 +23,5 @@ def get_network_info():
                        "speed": speed, "link": link}
     return dict
 
-print get_network_info()
-
 
 
