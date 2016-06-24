@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import psutil
-
+import pprint
 import os
 
 def get_ramOS_partitions():
@@ -28,4 +28,4 @@ def get_ramOS_partitions():
 		
 		return ramOS_info
 
-print get_ramOS_partitions()
+pprint.pprint(get_ramOS_partitions())
