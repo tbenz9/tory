@@ -22,7 +22,7 @@ def get_ramOS_partitions():
 		total_ram = ram[index]
 		free_ram = ram[1]
 		swap_space = psutil.swap_memory()[2]
-		os_version = 
+		os_version = os.system("cat /etc/redhat-release")
 		kernel_version = os.uname()[2]
 		hostname = os.uname()[1]
 
