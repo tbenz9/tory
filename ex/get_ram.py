@@ -13,7 +13,6 @@ import pprint
 import os
 
 ram = psutil.virtual_memory()
-os = psutil.virutal_memory()
 
 ramOS_info = {}
 
@@ -22,7 +21,10 @@ def get_ramOS_partitions():
 	for ram in os:
 		total_ram = ram[index]
 		free_ram = ram[1]
-		swap_space = psutil.swap_memory()[3]
+		swap_space = psutil.swap_memory()[2]
+		os_version = 
+		kernel_version = os.uname()[2]
+		hostname = os.uname()[1]
 
 		ramOS_info = {"total_ram": total_ram,
 			      "free_ram": free_ram, 
