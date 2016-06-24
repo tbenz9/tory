@@ -9,6 +9,7 @@ import util
 from util import AliasedArgumentParser, AliasedSubParsersAction
 
 import inventory
+import network
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -38,6 +39,8 @@ def main():
     args = parse_input()
     if args.command == 'disks':
         pprint.pprint(inventory.get_disk_partitions())
+    if args.command == 'disks':
+        pprint.pprint(network.get_network_info())
 
 if __name__ == '__main__':
     main()
