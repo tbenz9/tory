@@ -1,28 +1,21 @@
 #!/usr/bin/python
 
-"""
-git pull
-git add <filename>
-git commit -m "message"
-git pull
-git push
-"""
-
 import psutil
-import pprint
+
 import os
 
-ram = psutil.virtual_memory()
-
-ramOS_info = {}
-
 def get_ramOS_partitions():
+
+	ram = psutil.virtual_memory()
+
+	ramOS_info = {}
+
 	index = 0
-	for ram in os:
+	for x in ram:
 		total_ram = ram[index]
 		free_ram = ram[1]
 		swap_space = psutil.swap_memory()[2]
-		os_version = 
+		os_version = os.system("cat /etc/redhat-release")
 		kernel_version = os.uname()[2]
 		hostname = os.uname()[1]
 
@@ -35,4 +28,4 @@ def get_ramOS_partitions():
 		
 		return ramOS_info
 
-pprint.pprint(get_ramOS_partitions())
+print get_ramOS_partitions()
