@@ -1,4 +1,5 @@
 #!/usr/bin/python
+
 """
 git pull
 git add <filename>
@@ -9,12 +10,27 @@ git push
 
 import psutil
 import pprint
+import os
 
-totalRam = psutil.virtual_memory()[0]
-freeRam = psutil.virutal_memory()[1]
-ramOS_info{}
+ram = psutil.virtual_memory()
+os = psutil.virutal_memory()
 
+ramOS_info = {}
 
+def get_ramOS_partitions():
+	index = 0
+	for ram in os:
+		total_ram = ram[index]
+		free_ram = ram[1]
+		swap_space = psutil.swap_memory()[3]
 
-pprint.pprint(ramOS_info)
+		ramOS_info = {"total_ram": total_ram,
+			      "free_ram": free_ram, 
+			      "swap_space": swap_space, 
+			      "os_version": os_version,
+			      "kernel_version": kernel_version,
+			      "hostname": hostname}
+		
+		return ramOS_info
 
+pprint.pprint(get_ramOS_partitions())
