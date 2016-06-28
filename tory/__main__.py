@@ -57,7 +57,7 @@ def main():
     if args.command == 'network':
         pprint.pprint(network.get_network_info())
     if args.command == 'ramOS':
-	pprint.pprint(ramOS.get_ram_partitions())
+	pprint.pprint(ramOS.get_ramOS_partitions())
 
 if __name__ == '__main__':
     main()
