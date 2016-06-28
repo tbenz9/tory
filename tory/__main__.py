@@ -56,7 +56,7 @@ def main():
         pprint.pprint(inventory.get_disk_partitions())
     if args.command == 'network':
         pprint.pprint(network.get_network_info())
-    if args.command == 'ramOS':
+    if args.command == 'ram':
 	pprint.pprint(ram.get_ram_partitions())
 
 if __name__ == '__main__':
