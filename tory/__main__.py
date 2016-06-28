@@ -29,6 +29,7 @@ def parse_input():
                         dest='max_records',
                         default=200,
                         help='Maximum number of records to show')
+    
     # get disks
     sub_get_disks = subparsers.add_parser('disks',
                                               aliases=['disk'],
@@ -51,6 +52,8 @@ def main():
         pprint.pprint(inventory.get_disk_partitions())
     if args.command == 'network':
         pprint.pprint(network.get_network_info())
+    if args.command == 'cpu':
+        pprint.pprint(cpu.mch_cpu())
 
 if __name__ == '__main__':
     main()

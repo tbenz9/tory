@@ -1,5 +1,6 @@
+#!/usr/bin/python
 
-
+import json
 import psutil
 from subprocess import call
 import subprocess
@@ -18,5 +19,8 @@ def mch_cpu():
         cpu_info = {"num_cpus":psutil.cpu_count() , "num_cors_per_cpu":psutil.cpu_count()/ psutil.cpu_count(logical=False), "num_threds_per_core":num_thrds, "cpu_model":model, "cpu_model_name":mod_name, "cpu_speed":speed, "serial_number":out}
 	
 	return cpu_info
-pprint.pprint(mch_cpu())
+
+#print "this is the json output: \n"
+#print json.dumps(mch_cpu(), sort_keys=True, indent=4, separators=(',',': '))
+
 
