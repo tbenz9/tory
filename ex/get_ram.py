@@ -8,7 +8,7 @@ def get_os_vers():
     f = open("/etc/redhat-release", "r")
     return f.readline().strip("\n").strip(" ")
 
-def get_ramOS_partitions():
+def get_ram_partitions():
 
 	ram = psutil.virtual_memory()
 
@@ -30,4 +30,4 @@ def get_ramOS_partitions():
 		
 		return ramOS_info
 
-pprint.pprint(get_ramOS_partitions())
+pprint.pprint(get_ram_partitions())
