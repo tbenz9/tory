@@ -30,4 +30,3 @@ def get_ram_partitions():
 		
 		return ramOS_info
 
-pprint.pprint(get_ram_partitions())
