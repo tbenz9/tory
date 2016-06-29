@@ -11,6 +11,7 @@ from util import AliasedArgumentParser, AliasedSubParsersAction
 import inventory
 import network
 import cpu
+import ram
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -42,6 +43,10 @@ def parse_input():
     sub_get_cpu = subparsers.add_parser('cpu', 
                                               aliases=['cpu'], 
                                               help='Get info on CPU')
+    #get ramOS
+    sub_get_ram = subparsers.add_parser('ram',
+		    			      aliases=['ram'],
+					      help='Get info on RAM')
 
     args = parser.parse_args()
     return args
@@ -52,8 +57,13 @@ def main():
         pprint.pprint(inventory.get_disk_partitions())
     if args.command == 'network':
         pprint.pprint(network.get_network_info())
+<<<<<<< HEAD
     if args.command == 'cpu':
         pprint.pprint(cpu.mch_cpu())
+=======
+    if args.command == 'ram':
+	pprint.pprint(ram.get_ram_partitions())
+>>>>>>> 18eab7d479a07d5bd71f883e9315bc8bd32c6c91
 
 if __name__ == '__main__':
     main()
