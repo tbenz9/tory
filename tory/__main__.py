@@ -31,7 +31,12 @@ def parse_input():
                         dest='max_records',
                         default=200,
                         help='Maximum number of records to show')
-    
+    # This is the json flag
+    parser.add_argument('-j',
+                        '--json',
+                        action='store_true',
+                        dest='j_flag'
+                        help='convert to json')
     # get disks
     sub_get_disks = subparsers.add_parser('disks',
                                               aliases=['disk'],
