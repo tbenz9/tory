@@ -1,10 +1,8 @@
 #!/usr/bin/python
 
-import json
 import psutil
 from subprocess import call
 import subprocess
-import pprint
 
 def mch_cpu():
         proc = subprocess.Popen('lscpu', stdout=subprocess.PIPE)
@@ -20,7 +18,5 @@ def mch_cpu():
 	
 	return cpu_info
 
-#print "this is the json output: \n"
-#print json.dumps(mch_cpu(), sort_keys=True, indent=4, separators=(',',': '))
 
 
