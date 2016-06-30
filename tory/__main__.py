@@ -62,20 +62,13 @@ def main():
         pprint.pprint(inventory.get_disk_partitions())
     if args.command == 'network':
         pprint.pprint(network.get_network_info())
-<<<<<<< HEAD
     if args.command == 'cpu':
         pprint.pprint(cpu.mch_cpu())
-=======
     if args.command == 'ram':
 	pprint.pprint(ram.get_ram_partitions())
-<<<<<<< HEAD
->>>>>>> 18eab7d479a07d5bd71f883e9315bc8bd32c6c91
-=======
     if args.command == 'user':
         pprint.pprint(user.get_users())
-    if args.command == 'cpu':
-        pprint.pprint(cpu.mch_cpu())
->>>>>>> 2b9367ada298322f87e966a978d23459e51a3bce
+
 
 if __name__ == '__main__':
     main()
