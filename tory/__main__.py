@@ -14,6 +14,7 @@ import cpu
 import ram
 import user
 import json
+import human_read
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -38,6 +39,14 @@ def parse_input():
                         action='store_true',
                         dest='j_flag',
                         help='convert to json')
+
+    # This is the human readable flag
+    parser.add_argument('-r',
+                        '--read',
+                        action='store_true',
+                        dest='r_flag',
+                        help='convert to human readable')
+
     # get disks
     sub_get_disks = subparsers.add_parser('disks',
                                               aliases=['disk'],
@@ -72,21 +81,29 @@ def main():
     if args.command == 'network':
         if args.j_flag:
             pprint.pprint(json.dumps(network.get_network_info(), sort_keys=True, separators=(',', ': ')))
+        elif args.r_flag:
+            human_read.net_human(network.get_network_info())
         else:
             pprint.pprint(network.get_network_info())
     if args.command == 'cpu':
         if args.j_flag:
             pprint.pprint(json.dumps(cpu.mch_cpu(), sort_keys=True, separators=(',', ': ')))
+        elif args.r_flag:
+            human_read.cpu_human(cpu.mch_cpu())
         else:
             pprint.pprint(cpu.mch_cpu())
     if args.command == 'ram':
         if args.j_flag:
             pprint.pprint(json.dumps(ram.get_ram_partitions(), sort_keys=True, separators=(',', ': ')))
+        elif args.r_flag:
+            human_read.ram_human(ram.get_ram_partitions())
         else:
 	    pprint.pprint(ram.get_ram_partitions())
     if args.command == 'user':
         if args.j_flag:
             pprint.pprint(json.dumps(user.get_users(), sort_keys=True, separators=(',', ': ')))
+        elif args.r_flag:
+            human_read.users_human(user.get_users())
         else:
             pprint.pprint(user.get_users())
 
