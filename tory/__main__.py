@@ -15,6 +15,7 @@ import ram
 import user
 import json
 import human_read
+import database
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -46,6 +47,13 @@ def parse_input():
                         action='store_true',
                         dest='r_flag',
                         help='convert to human readable')
+
+    # This is the database flag
+    parser.add_argument('-d',
+                        '--database',
+                        action='store_true',
+                        dest='d_flag',
+                        help='send to database')
 
     # get disks
     sub_get_disks = subparsers.add_parser('disks',
@@ -83,6 +91,9 @@ def main():
             pprint.pprint(json.dumps(network.get_network_info(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
             human_read.net_human(network.get_network_info())
+        elif args.d_flag:
+            database.add_network_to_database(network.get_network_info())
+            database.get_network_from_database()
         else:
             pprint.pprint(network.get_network_info())
     if args.command == 'cpu':
