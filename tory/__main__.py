@@ -14,13 +14,10 @@ import cpu
 import ram
 import user
 import json
-<<<<<<< HEAD
 import pack
-=======
 import human_read
 import database
 import simple
->>>>>>> cf53dbf28319ecd2856b8595cc7bd5ff3692e7b7
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -80,23 +77,16 @@ def parse_input():
     sub_get_user = subparsers.add_parser('user',
                                               aliases=['users'],
                                               help='Get info on users')
-<<<<<<< HEAD
-   
-=======
-<<<<<<< HEAD
+    #get simple
+    sub_get_simple = subparsers.add_parser('simple',
+		    			      aliases=['simple'],
+					      help='Get info on simple')
     #get package list 
     sub_get_package= subparsers.add_parser('package',
                                               aliases=['pack', 'packages'],
                                               help='Get list of packages or search for one package')
     sub_get_package.add_argument('-p', '--pack', type=str, nargs='?',  action='store', dest='PACKAGE', help = 'Get list of packages or search for one package')
-=======
-    #get simple
-    sub_get_simple = subparsers.add_parser('simple',
-		    			      aliases=['simple'],
-					      help='Get simple info')
 
->>>>>>> cf53dbf28319ecd2856b8595cc7bd5ff3692e7b7
->>>>>>> cfe836943885f8df442443fb8b447bdb2521f6bf
     args = parser.parse_args()
     return args
 
@@ -138,24 +128,13 @@ def main():
             human_read.users_human(user.get_users())
         else:
             pprint.pprint(user.get_users())
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
     if args.command == 'pack':
         str_name= ''
         if args.PACKAGE:
             str_name=args.PACKAGE
         pprint.pprint(pack.get_pack(str_name))
 
-=======
-    if srgs.command == 'simple':
-	if args.j_flag:
-	    pprint.pprint(json.dumps(simple.get_simple_info(), sort_keys=True, separators=(',', ': ')))
-        elif args.r_flag:
-            human_read.simple_human(simple.get_simple_info())					         else:
-	    pprint.pprint(user.get_simple_info())
->>>>>>> cf53dbf28319ecd2856b8595cc7bd5ff3692e7b7
->>>>>>> cfe836943885f8df442443fb8b447bdb2521f6bf
 
 if __name__ == '__main__':
     main()
