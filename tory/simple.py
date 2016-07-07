@@ -3,6 +3,7 @@
 import psutil
 import pprint
 import network
+import cpu
 import os
 
 def get_simple_info():
@@ -17,8 +18,8 @@ def get_simple_info():
 	for x in simple:
 		num_cpu = cpu_count
 		total_ram = ram[0]
-		ip_address = get_network_info(addresses[0][1])
-		ip_address = get_network_info("ip_address")
+		#ip_address = get_network_info(addresses[0][1])
+		#ip_address = get_network_info("ip_address")
 		ip_address = network[0][1]
 		total_disk = disk[0]
 		hostname = os.uname()[1]
