@@ -76,11 +76,7 @@ def parse_input():
     sub_get_user = subparsers.add_parser('user',
                                               aliases=['users'],
                                               help='Get info on users')
-    #get simple
-    sub_get_simple = subparsers.add_parser('simple',
-		    			      aliases=['simple'],
-					      help='Get simple info')
-
+   
     args = parser.parse_args()
     return args
 
@@ -122,12 +118,6 @@ def main():
             human_read.users_human(user.get_users())
         else:
             pprint.pprint(user.get_users())
-    if srgs.command == 'simple':
-	if args.j_flag:
-	    pprint.pprint(json.dumps(simple.get_simple_info(), sort_keys=True, separators=(',', ': ')))
-        elif args.r_flag:
-            human_read.simple_human(simple.get_simple_info())					         else:
-	    pprint.pprint(user.get_simple_info())
 
 if __name__ == '__main__':
     main()
