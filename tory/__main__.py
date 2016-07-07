@@ -91,15 +91,14 @@ def parse_input():
     return args
 
 def main():
-    args = parse_input()
-   
-   if args.command == 'disks':
+    args = parse_input() 
+    if args.command == 'disks':
         if args.j_flag:
             pprint.pprint(json.dumps(inventory.get_disk_partitions(), sort_keys=True, separators=(',', ': ')))
         else: 
             pprint.pprint(inventory.get_disk_partitions())
    
-   if args.command == 'network':
+    if args.command == 'network':
         if args.j_flag:
             pprint.pprint(json.dumps(network.get_network_info(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
@@ -110,7 +109,7 @@ def main():
         else:
             pprint.pprint(network.get_network_info())
    
-   if args.command == 'cpu':
+    if args.command == 'cpu':
         if args.j_flag:
             pprint.pprint(json.dumps(cpu.mch_cpu(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
@@ -118,7 +117,7 @@ def main():
         else:
             pprint.pprint(cpu.mch_cpu())
    
-   if args.command == 'ram':
+    if args.command == 'ram':
         if args.j_flag:
             pprint.pprint(json.dumps(ram.get_ram_partitions(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
@@ -126,7 +125,7 @@ def main():
         else:
 	    pprint.pprint(ram.get_ram_partitions())
    
-   if args.command == 'user':
+    if args.command == 'user':
         if args.j_flag:
             pprint.pprint(json.dumps(user.get_users(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
@@ -134,7 +133,7 @@ def main():
         else:
             pprint.pprint(user.get_users())
    
-   if args.command == 'simple':
+    if args.command == 'simple':
 	if args.j_flag:
 	    pprint.pprint(json.dumps(simple.get_simple_info(), sort_keys=True, separators=(',', ': ')))
 	elif args.r_flag:
@@ -142,7 +141,7 @@ def main():
 	else:
 	    pprint.pprint(simple.get_simple_info())
    
-   if args.command == 'pack':
+    if args.command == 'pack':
         str_name= ''
         if args.PACKAGE:
             str_name=args.PACKAGE
