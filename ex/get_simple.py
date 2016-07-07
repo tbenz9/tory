@@ -30,3 +30,5 @@ def get_simple_info():
 			       "Hostname": hostname}
 
 		return simple_info
+
+pprint.pprint(get_simple_info())
