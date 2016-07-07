@@ -7,13 +7,14 @@ sys.path.append(os.getcwd().split('tory')[0]+"tory/tory/")
 
 import util
 from util import AliasedArgumentParser, AliasedSubParsersAction
-
+import argparse
 import inventory
 import network
 import cpu
 import ram
 import user
 import json
+import pack
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
@@ -40,8 +41,8 @@ def parse_input():
                         help='convert to json')
     # get disks
     sub_get_disks = subparsers.add_parser('disks',
-                                              aliases=['disk'],
-                                              help='Get info on disks')
+                                            aliases=['disk'],
+                                            help='Get info on disks')
     # get network
     sub_get_network = subparsers.add_parser('network',
                                               aliases=['net'],
@@ -58,7 +59,11 @@ def parse_input():
     sub_get_user = subparsers.add_parser('user',
                                               aliases=['users'],
                                               help='Get info on users')
-
+    #get package list 
+    sub_get_package= subparsers.add_parser('package',
+                                              aliases=['pack', 'packages'],
+                                              help='Get list of packages or search for one package')
+    sub_get_package.add_argument('-p', '--pack', type=str, nargs='?',  action='store', dest='PACKAGE', help = 'Get list of packages or search for one package')
     args = parser.parse_args()
     return args
 
@@ -89,6 +94,11 @@ def main():
             pprint.pprint(json.dumps(user.get_users(), sort_keys=True, separators=(',', ': ')))
         else:
             pprint.pprint(user.get_users())
+    if args.command == 'pack':
+        str_name= ''
+        if args.PACKAGE:
+            str_name=args.PACKAGE
+        pprint.pprint(pack.get_pack(str_name))
 
 
 if __name__ == '__main__':
