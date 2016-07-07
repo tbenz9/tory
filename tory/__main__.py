@@ -56,6 +56,12 @@ def parse_input():
                         action='store_true',
                         dest='d_flag',
                         help='send to database')
+    # This is the show database flag
+    parser.add_argument('-s',
+                        '--show_database',
+                        action='store_true',
+                        dest='s_flag',
+                        help='show contents in database')
 
     # get disks
     sub_get_disks = subparsers.add_parser('disks',
@@ -105,7 +111,8 @@ def main():
             human_read.net_human(network.get_network_info())
         elif args.d_flag:
             database.add_network_to_database(network.get_network_info())
-            database.get_network_from_database()
+        elif args.s_flag:
+            database.get_from_database("network")
         else:
             pprint.pprint(network.get_network_info())
    
@@ -114,6 +121,10 @@ def main():
             pprint.pprint(json.dumps(cpu.mch_cpu(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
             human_read.cpu_human(cpu.mch_cpu())
+        elif args.d_flag:
+            database.add_cpu_to_database(cpu.mch_cpu())
+        elif args.s_flag:
+            database.get_from_database("cpu")
         else:
             pprint.pprint(cpu.mch_cpu())
    
@@ -122,6 +133,10 @@ def main():
             pprint.pprint(json.dumps(ram.get_ram_partitions(), sort_keys=True, separators=(',', ': ')))
         elif args.r_flag:
             human_read.ram_human(ram.get_ram_partitions())
+        elif args.d_flag:
+            database.add_ram_to_database(ram.get_ram_partitions())
+        elif args.s_flag:
+            database.get_from_database("ram")
         else:
 	    pprint.pprint(ram.get_ram_partitions())
    
