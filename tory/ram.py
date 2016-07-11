@@ -3,6 +3,7 @@
 import psutil
 import pprint
 import os
+from human_read import find_units
 
 def get_os_vers():
     f = open("/etc/redhat-release", "r")
@@ -21,9 +22,9 @@ def get_ram_partitions():
 		kernel_version = os.uname()[2]
 		hostname = os.uname()[1]
 
-		ramOS_info = {"total_ram": total_ram,
-			      "free_ram": free_ram, 
-			      "swap_space": swap_space, 
+		ramOS_info = {"total_ram": find_units(total_ram),
+			      "free_ram": find_units(free_ram), 
+			      "swap_space": find_units(swap_space), 
 			      "os_version": get_os_vers(),
 			      "kernel_version": kernel_version,
 			      "hostname": hostname}
