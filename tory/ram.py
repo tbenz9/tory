@@ -3,17 +3,25 @@
 import psutil
 import pprint
 import os
+import os.path
 from human_read import find_units
 
-def get_os_vers():
-    f = open("/etc/redhat-release", "r")
-    return f.readline().strip("\n").strip(" ")
+def get_os_vers(): # defined function to return OS Version from command
+    
+    
 
-def get_ram_partitions():
+# testing out error checking 
+	if os.path.exists("/etc/redhat-release"):
+		f = open("/etc/redhat-release", "r")
+        	return f.readline().strip("\n").strip(" ")
+	else:
+		print "There is no such file"
 
-	ram = psutil.virtual_memory()
+def get_ram_partitions(): # defined function to get all the RAM info
 
-	ramOS_info = {}
+	ram = psutil.virtual_memory() # python psutil package that gathers information on memory
+
+	ramOS_info = {} # RAM dictionary
 
 	for x in ram:
 		total_ram = ram[0]
@@ -29,5 +37,4 @@ def get_ram_partitions():
 			      "kernel_version": kernel_version,
 			      "hostname": hostname}
 		
-		return ramOS_info
-
+		return ramOS_info # returns RAM dictionary
