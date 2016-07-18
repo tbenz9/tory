@@ -27,9 +27,9 @@ def get_simple_info():
 		hostname = os.uname()[1]
 
 		simple_info = {"CPU": num_cpu,
-			       "RAM": find_units(total_ram),
+			       "RAM": total_ram,
 			       "IP Address": ip_address,
-			       "Total HDD": find_units(total_disk),
+			       "Total HDD": total_disk,
 			       "Hostname": hostname}
 
 		return simple_info
