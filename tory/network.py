@@ -10,18 +10,37 @@ def getHwAddr(ifname):
     return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1]
 
 def get_network_info():
-    addresses = psutil.net_if_addrs()
-    stats = psutil.net_if_stats()
+    try:
+        addresses = psutil.net_if_addrs()
+        stats = psutil.net_if_stats()
+    except: 
+        print "psutil information not found."   #if no psutil found return error
+        return "error"
     
     dict = {}
-    for name in addresses:
-        mac_address = getHwAddr(name)
-        ip_address = addresses[name][0][1]
-        speed = stats[name][2] / 1000.0
-        link = stats[name][0]
-        dict[name] =  {"mac_address": mac_address, "ip_address": ip_address, \
-                       "speed": speed, "link": link}
-    return dict
+    for name in addresses:                      #for each individual value, say no ___ if not found
+        try:
+            mac_address = getHwAddr(name)
+        except:
+            mac_address = "No mac_address found"
 
+        try:
+            ip_address = addresses[name][0][1]
+        except:
+            ip_address = "no ip_address found"        
+
+        try:
+            speed = stats[name][2] / 1000.0
+        except:
+            speed = "no speed found"        
+
+        try:
+            link = stats[name][0]
+        except:
+            link = False        
+
+        dict[name] =  {"mac_address": mac_address, "ip_address": ip_address, \
+                        "speed": speed, "link": link}
+    return dict
 
 
