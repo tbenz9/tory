@@ -2,9 +2,6 @@ import sys
 import os
 import pprint
 
-# Hack to get the CWD until we build a real python package
-sys.path.append(os.getcwd().split('tory')[0]+"tory/tory/")
-
 import util
 from util import AliasedArgumentParser, AliasedSubParsersAction
 import argparse
@@ -18,6 +15,10 @@ import pack
 import human_read
 import database
 import simple
+
+# Hack to get the CWD until we build a real python package
+sys.path.append(os.getcwd().split('tory')[0]+"tory/tory/")
+
 
 def parse_input():
     parser = AliasedArgumentParser(prog='PROG',
