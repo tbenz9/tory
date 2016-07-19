@@ -15,9 +15,12 @@ def get_os_vers(): # defined function to return OS Version from command
 		print "There is no such file" # if file is not found
 
 def get_ram_partitions(): # defined function to get all the RAM info
-
-	ram = psutil.virtual_memory() # python psutil package that gathers information on memory
-
+	
+	try: # tries and ensures that psutil is found and installed
+		ram = psutil.virtual_memory() # python psutil package that gathers information on memory
+	except: # if psutil is not found, returns error
+		print "Please make sure your have psutil installed, psutil information not found"
+	
 	ramOS_info = {} # RAM dictionary
 
 	for x in ram:
@@ -27,9 +30,9 @@ def get_ram_partitions(): # defined function to get all the RAM info
 		kernel_version = os.uname()[2]
 		hostname = os.uname()[1]
 
-		ramOS_info = {"total_ram": (total_ram),
-			      "free_ram": (free_ram), 
-			      "swap_space": (swap_space), 
+		ramOS_info = {"total_ram": total_ram,
+			      "free_ram": free_ram, 
+			      "swap_space": swap_space, 
 			      "os_version": get_os_vers(),
 			      "kernel_version": kernel_version,
 			      "hostname": hostname}
