@@ -12,7 +12,7 @@ def get_os_vers(): # defined function to return OS Version from command
 		f = open("/etc/redhat-release", "r")
         	return f.readline().strip("\n").strip(" ")
 	else:
-		print "There is no such file" # if file is not found
+		print "OS Version not found" # if file is not found
 
 def get_ram_partitions(): # defined function to get all the RAM info
 	
@@ -23,12 +23,32 @@ def get_ram_partitions(): # defined function to get all the RAM info
 	
 	ramOS_info = {} # RAM dictionary
 
-	for x in ram:
-		total_ram = ram[0]
-		free_ram = ram[1]
-		swap_space = psutil.swap_memory()[2]
-		kernel_version = os.uname()[2]
-		hostname = os.uname()[1]
+    	for x in ram:
+		
+		try:	
+			total_ram = ram[0]
+		except:
+			total_ram = "Total RAM not found"
+	
+		try:
+			free_ram = ram[1]
+		except:
+			free_ram = "Free RAM not found"
+	
+		try:
+			swap_space = psutil.swap_memory()[2]
+		except:
+			swap_space = "Swap Space not found"
+	
+		try:
+			kernel_version = os.uname()[2]
+		except:
+			kernel_version = "Kernel Version not found"
+	
+		try:
+			hostname = os.uname()[1]
+		except:
+			hostname = "Hostname not found"
 
 		ramOS_info = {"total_ram": total_ram,
 			      "free_ram": free_ram, 
