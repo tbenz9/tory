@@ -14,10 +14,14 @@ def get_simple_info():
 
 	simple_info = {}
 	
-	cpu_count = psutil.cpu_count()
-	ram = psutil.virtual_memory()
+	try:
+		cpu_count = psutil.cpu_count()
+		ram = psutil.virtual_memory()
+		disk = psutil.disk_usage('/')
+	except:
+		print "Error: Please make sure you have psutil installed, psutil info not found"
+		
 	network = socket.gethostbyname(socket.gethostname())
-	disk = psutil.disk_usage('/')
 
 	for x in network:
 		num_cpu = cpu_count
