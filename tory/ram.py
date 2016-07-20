@@ -19,7 +19,7 @@ def get_ram_partitions(): # defined function to get all the RAM info
 	try: # tries and ensures that psutil is found and installed
 		ram = psutil.virtual_memory() # python psutil package that gathers information on memory
 	except: # if psutil is not found, returns error
-		print "Please make sure your have psutil installed, psutil information not found"
+		print "Error: Please make sure your have psutil installed, psutil information not found"
 	
 	ramOS_info = {} # RAM dictionary
 
