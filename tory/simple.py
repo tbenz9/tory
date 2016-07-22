@@ -14,17 +14,40 @@ def get_simple_info():
 
 	simple_info = {}
 	
-	cpu_count = psutil.cpu_count()
-	ram = psutil.virtual_memory()
+	try:
+		cpu_count = psutil.cpu_count()
+		ram = psutil.virtual_memory()
+		disk = psutil.disk_usage('/')
+	except:
+		print "Error: Please make sure you have psutil installed, psutil info not found"
+		
 	network = socket.gethostbyname(socket.gethostname())
-	disk = psutil.disk_usage('/')
 
 	for x in network:
-		num_cpu = cpu_count
-		total_ram = ram[0]
-		ip_address = network
-		total_disk = disk[0]
-		hostname = os.uname()[1]
+		try:
+			num_cpu = cpu_count
+		except:
+			num_cpu = "Error: Number of CPUs could not be found"
+		
+		try:
+			total_ram = ram[0]
+		except:
+			total_ram = "Error: Total RAM could not be found"
+		
+		try:
+			ip_address = network
+		except:
+			ip_address = "Error: IP Address could not be found"
+		
+		try:
+			total_disk = disk[0]
+		except:
+			total_disk = "Error: Total HDD could not be found"
+		
+		try:
+			hostname = os.uname()[1]
+		except:
+			hostname = "Error: Hostname could not be found"
 
 		simple_info = {"CPU": num_cpu,
 			       "RAM": total_ram,
