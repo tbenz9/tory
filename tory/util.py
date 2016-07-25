@@ -15,6 +15,47 @@ from ConfigParser import (
 
 ALIASES = {}
 
+def print_nicely(obj):
+    if type(obj) == dict:
+        for k, v in obj.items():
+            if hasattr(v, '__iter__'):
+                print k
+                print_nicely(v)
+            else:
+                print '%s : %s' % (k, v)
+    elif type(obj) == list:
+        for v in obj:
+            if hasattr(v, '__iter__'):
+                print_nicely(v)
+            else:
+                print v
+    else:
+        print obj
+
+#converts from bytes to largest unit, returns a string of #units
+def find_units(num):
+    counter = 0
+    while (num > 999):
+        num = num / 1000.0
+        counter = counter + 1
+    num = round(num, 2)
+    if counter == 0:
+       return str(num) + 'B'
+    elif counter == 1:
+       return str(num) + 'KB'
+    elif counter == 2:
+       return str(num) + 'MB'
+    elif counter == 3:
+       return str(num) + 'GB'
+    elif counter == 4:
+       return str(num) + 'TB'
+    elif counter == 5:
+       return str(num) + 'PB'
+    elif counter == 6:
+       return str(num) + 'EB'
+    else:
+       return str(num)
+
 # class to allow for aliases for argparse positional arguments
 #### code credit to https://gist.github.com/sampsyo/471779 ####
 class AliasedSubParsersAction(argparse._SubParsersAction):
