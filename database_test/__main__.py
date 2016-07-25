@@ -139,7 +139,7 @@ def main():
         elif args.s_flag:
             flaskr2.retrieve('ram')
         else:
-	    pprint.pprint(ram.get_ram_partitions())
+	        pprint.pprint(ram.get_ram_partitions())
    
     if args.command == 'user':
         if args.j_flag:
@@ -154,19 +154,18 @@ def main():
             pprint.pprint(user.get_users())
    
     if args.command == 'simple':
-	if args.j_flag:
-	    pprint.pprint(json.dumps(simple.get_simple_info(), sort_keys=True, separators=(',', ': ')))
-	elif args.r_flag:
-	    human_read.simple_human(simple.get_simple_info())
-    else:
-	    pprint.pprint(simple.get_simple_info())
+        if args.j_flag:
+	        pprint.pprint(json.dumps(simple.get_simple_info(), sort_keys=True, separators=(',', ': ')))
+        elif args.r_flag:
+	        human_read.simple_human(simple.get_simple_info())
+        else:
+	        pprint.pprint(simple.get_simple_info())
    
     if args.command == 'pack':
         str_name= ''
         if args.PACKAGE:
             str_name=args.PACKAGE
         pprint.pprint(pack.get_pack(str_name))
-
 
 if __name__ == '__main__':
     main()
