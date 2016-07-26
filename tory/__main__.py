@@ -16,7 +16,6 @@ import user
 import json
 import pack
 import human_read
-import database
 import simple
 import flaskr
 
