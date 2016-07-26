@@ -1,5 +1,3 @@
-#flaskr2.py
-#flaskr.py had some weird error so am starting over
 
 import os
 import sqlite3
@@ -18,7 +16,6 @@ app.config.update(dict(
     PASSWORD='default'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-
 
 def connect_db():                                                       #http://flask.pocoo.org/docs/0.11/tutorial/setup/
     """Connects to the specific database."""
@@ -47,16 +44,20 @@ def initdb_command():
     init_db()
     print 'Initialized the database.'
 
+@app.teardown_appcontext
+def close_db(error):
+    """Closes the database again at the end of the request."""
+    if hasattr(g, 'sqlite_db'):
+        g.sqlite_db.close()
+
 def insert(info, json):
     with app.app_context():
         # g.db is the database connection
         g.db = get_db()
         cur = g.db.cursor()
-       # query = ('INSERT INTO entries (info_type, json) VALUES (%s, %s)' % (info, json))
         format_str = """INSERT INTO entries (info_type, json) VALUES ("{info_type}", '{json}');"""
         sql_command = format_str.format(info_type = info, json = str(json))
         cur.execute(sql_command)
-        #cur.execute(query)
         g.db.commit()
         id = cur.lastrowid
         cur.close()
@@ -73,10 +74,4 @@ def retrieve(info):
             if entry[1] == info:
                 print entry
         db.close()
-        return entries
-
-
-#insert('hello',  '"{"eno16777984": {"ip_address": "192.168.80.36","link": true,"mac_address": "00:50:56:99:3e:8f","speed": 10.0},"eno33557248": {"ip_address": "192.168.0.6","link": true,"mac_address": "00:50:56:99:5d:3e","speed": 10.0},"lo": {"ip_address": "127.0.0.1","link": true,"mac_address": "00:00:00:00:00:00","speed": 0.0},"virbr0": {"ip_address": "192.168.122.1","link": true,"mac_address": "52:54:00:4a:ef:c3","speed": 0.0},"virbr0-nic": {"ip_address": "52:54:00:4a:ef:c3","link": false,"mac_address": "52:54:00:4a:ef:c3","speed": 0.01}}')
-#retrieve ('hello')
-
 
