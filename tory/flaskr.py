@@ -1,4 +1,6 @@
 
+import pprint
+import json
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -52,13 +54,14 @@ def close_db(error):
 
 def insert(info, json):
     with app.app_context():
-        # g.db is the database connection
-        g.db = get_db()
-        cur = g.db.cursor()
+        # db is the database connection
+        # when data is stored, stores (id_num, info_type, json)
+        db = get_db()
+        cur = db.cursor()
         format_str = """INSERT INTO entries (info_type, json) VALUES ("{info_type}", '{json}');"""
         sql_command = format_str.format(info_type = info, json = str(json))
         cur.execute(sql_command)
-        g.db.commit()
+        db.commit()
         id = cur.lastrowid
         cur.close()
         return id
@@ -70,8 +73,11 @@ def retrieve(info):
         sql_command = 'SELECT * FROM entries' # WHERE info_type = %s;' %info
         cur = db.execute(sql_command) #'SELECT json FROM entries WHERE info_type=%s', %info)
         entries = cur.fetchall()
+        print ''
         for entry in entries:
             if entry[1] == info:
-                print entry
+                pprint.pprint(json.loads(entry[2]))
+                print ''
         db.close()
+
 
