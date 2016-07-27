@@ -4,8 +4,7 @@ try:
     import json
     import os
     import sqlite3
-    from flask import Flask, request, session, g, redirect, url_for, abort, \
-         render_template, flash
+    from flask import Flask, request, session, g, redirect, url_for, abort,render_template, flash
 except ImportError:
     print 'Not all libraries are avaiable'
 except:
@@ -26,6 +25,17 @@ try:
     app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 except:
     print 'Error occurred while making application'
+
+@app.route('/')
+def home():
+    db = connect_db()
+    cur = db.execute('select * from entries')
+    posts = [dict(type=row[1], json=row[2]) for row in cur.fetchall()]
+    db.close()
+    try:
+        return render_template('index.html', posts=posts) # render a template
+    except:
+        return 'Problem'
 
 def connect_db():                                                      #http://flask.pocoo.org/docs/0.11/tutorial/setup/
     """Connects to the specific database."""
@@ -106,3 +116,5 @@ def retrieve(info):
         except:
             print 'Error occured while retrieve data from database'
 
+if __name__ == "__main__":
+    app.run()
