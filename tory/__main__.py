@@ -102,8 +102,6 @@ def parse_input():
 def main():
     args = parse_input() 
 
-    if args.query_flag:
-        print 'query'
     if args.command == 'disks':
         if args.j_flag:
             pprint.pprint(json.dumps(inventory.get_disk_partitions(), sort_keys=True, separators=(',', ': ')))
