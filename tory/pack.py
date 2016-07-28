@@ -3,8 +3,14 @@
 from subprocess import call
 import subprocess
 
-def get_pack(pack_name):
-        # If no argument is given I will list all packages
+def get_pack(pack_name)
+        """:
+        If no package name is given, this will list all packages.
+        otherwise, it will show the package.
+ 
+        :type pack_name: string
+        :param pack_name: package name
+        """
         if (len(pack_name) == 0) :
             proc = subprocess.Popen(['rpm', '-qa'], stdout=subprocess.PIPE, stdin = subprocess.PIPE)
             (out, err)= proc.communicate()

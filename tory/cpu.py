@@ -5,11 +5,15 @@ import psutil
 from subprocess import call
 import subprocess
 
-"""This function will gather cpu information. Needs root permission
-   Parameters: none
-   return: dictionary"""
 
 def mch_cpu():
+            """
+            This function will gather cpu information. 
+            Needs root permission.
+            Parameters: none
+            return: dictionary
+            """
+
             uid = os.getuid()
             proc = subprocess.Popen('lscpu', stdout=subprocess.PIPE)
             output = proc.stdout.read()
