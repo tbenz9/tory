@@ -62,9 +62,6 @@ def parse_input():
                         action='store_true',
                         dest='s_flag',
                         help='show contents in database')
-    # this is the query flag
-    parser.add_argument('--query', action='store_true', dest='query_flag', help='query')
-
 
     # get disks
     sub_get_disks = subparsers.add_parser('disks',

@@ -28,6 +28,8 @@ except:
 
 @app.route('/')
 def home():
+    """Default route when app.run() is called. 
+    This function gets all the data from the data base and displays it to a html webpage."""
     db = connect_db()
     cur = db.execute('select * from entries')
     posts = [dict(type=row[1], json=row[2]) for row in cur.fetchall()]
@@ -101,11 +103,13 @@ def insert(info, json):
 
 #print all entries from table
 def retrieve(info):
+    """retrieves data from database. 
+    Prints all the entries from the given info type"""
     with app.app_context():
         try:
             db = get_db()
-            sql_command = 'SELECT * FROM entries' # WHERE info_type = %s;' %info
-            cur = db.execute(sql_command) #'SELECT json FROM entries WHERE info_type=%s', %info)
+            sql_command = 'SELECT * FROM entries' 
+            cur = db.execute(sql_command)
             entries = cur.fetchall()
             print ''
             for entry in entries:
@@ -115,6 +119,9 @@ def retrieve(info):
             db.close()
         except:
             print 'Error occured while retrieve data from database'
+
+def run():
+    app.run()
 
 if __name__ == "__main__":
     app.run()
