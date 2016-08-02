@@ -4,8 +4,7 @@ try:
     import json
     import os
     import sqlite3
-    from flask import Flask, request, session, g, redirect, url_for, abort, \
-         render_template, flash
+    from flask import Flask, request, session, g, redirect, url_for, abort,render_template, flash
 except ImportError:
     print 'Not all libraries are avaiable'
 except:
@@ -26,6 +25,19 @@ try:
     app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 except:
     print 'Error occurred while making application'
+
+@app.route('/')
+def home():
+    """Default route when app.run() is called. 
+    This function gets all the data from the data base and displays it to a html webpage."""
+    db = connect_db()
+    cur = db.execute('select * from entries')
+    posts = [dict(type=row[1], json=row[2]) for row in cur.fetchall()]
+    db.close()
+    try:
+        return render_template('index.html', posts=posts) # render a template
+    except:
+        return 'Problem'
 
 def connect_db():                                                      #http://flask.pocoo.org/docs/0.11/tutorial/setup/
     """Connects to the specific database."""
@@ -91,11 +103,13 @@ def insert(info, json):
 
 #print all entries from table
 def retrieve(info):
+    """retrieves data from database. 
+    Prints all the entries from the given info type"""
     with app.app_context():
         try:
             db = get_db()
-            sql_command = 'SELECT * FROM entries' # WHERE info_type = %s;' %info
-            cur = db.execute(sql_command) #'SELECT json FROM entries WHERE info_type=%s', %info)
+            sql_command = 'SELECT * FROM entries' 
+            cur = db.execute(sql_command)
             entries = cur.fetchall()
             print ''
             for entry in entries:
@@ -106,3 +120,8 @@ def retrieve(info):
         except:
             print 'Error occured while retrieve data from database'
 
+def run():
+    app.run()
+
+if __name__ == "__main__":
+    app.run()

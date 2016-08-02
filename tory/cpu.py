@@ -5,11 +5,15 @@ import psutil
 from subprocess import call
 import subprocess
 
-"""This function will gather cpu information. Needs root permission
-   Parameters: none
-   return: dictionary"""
 
 def mch_cpu():
+            """
+            This function will gather cpu information. 
+            Needs root permission.
+            Parameters: none
+            return: dictionary
+            """
+
             uid = os.getuid()
             proc = subprocess.Popen('lscpu', stdout=subprocess.PIPE)
             output = proc.stdout.read()
@@ -21,11 +25,11 @@ def mch_cpu():
             if (uid == 0):
                 proc2 = subprocess.Popen(["dmidecode", "-s", "system-serial-number"], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
                 (out, err) = proc2.communicate()
-                cpu_info = {"num_cpus":psutil.cpu_count() , "num_cors_per_cpu":psutil.cpu_count()/ psutil.cpu_count(logical=False), "num_threds_per_core":num_thrds, "cpu_model":model, "cpu_model_name":mod_name, "cpu_speed":speed, "serial_number":out}
+                cpu_info = {"num_cpus":psutil.cpu_count() , "num_cores_per_cpu":psutil.cpu_count()/ psutil.cpu_count(logical=False), "num_threads_per_core":num_thrds, "cpu_model":model, "cpu_model_name":mod_name, "cpu_speed":speed, "serial_number":out}
 
             elif (uid != 0 ):
 
-                cpu_info = {"num_cpus":psutil.cpu_count() , "num_cors_per_cpu":psutil.cpu_count()/ psutil.cpu_count(logical=False), "num_threds_per_core":num_thrds, "cpu_model":model, "cpu_model_name":mod_name, "cpu_speed":speed, "serial_number":"Need Root!"}
+                cpu_info = {"num_cpus":psutil.cpu_count() , "num_cores_per_cpu":psutil.cpu_count()/ psutil.cpu_count(logical=False), "num_threads_per_core":num_thrds, "cpu_model":model, "cpu_model_name":mod_name, "cpu_speed":speed, "serial_number":"Need Root!"}
 
             return cpu_info
 

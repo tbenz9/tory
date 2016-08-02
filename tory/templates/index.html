@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Welcome to Tory!</h1>
+<br>
+<h3>Entries:</h3>
+{% for post in posts %}
+  <strong>Type:</strong> {{ post.type }} <br>
+  <strong>Json:</strong> {{ post.json }} <br>
+<br>
+{% endfor %}
+
+{% endblock %}
