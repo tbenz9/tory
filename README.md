@@ -1,2 +1,2 @@
 # tory
-tory is an inventory program developed at LLNL for getting information on the HPC clusters
+A computer inventory program for gathering system information on HPC clusters and Linux based systems.
