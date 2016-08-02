@@ -3,7 +3,7 @@
 from subprocess import call
 import subprocess
 
-def get_pack(pack_name)
+def get_pack(pack_name ):
         """:
         If no package name is given, this will list all packages.
         otherwise, it will show the package.
