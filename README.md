@@ -2,12 +2,12 @@
 A computer inventory program for gathering system information on HPC clusters and Linux based systems.
 
 ###Features of Tory:
-*Disks
-*Network
-*RAM (Includes OS information as well)
-*CPU
-*Packages
-*Users
+* Disks
+* Network
+* RAM (Includes OS information as well)
+* CPU
+* Packages
+* Users
 
 ###Tory Help Page
 
@@ -28,24 +28,24 @@ git clone http://www.github.com/tbenz9/tory
 Working
 
 # Usage
-###Example of Tory *simple* command:
+####Example of Tory *simple* and *simple -r* command:
 
 ![simple command](https://cloud.githubusercontent.com/assets/15205620/17413825/a51932b8-5a37-11e6-93dc-f141ef13e948.PNG)
 
 ### System Calls:
-**python tory disks**
-**python tory network**
-**python tory ram**
-**python tory cpu**
-**python tory pack**
-**python tory user**
-**python tory simple**
+* python tory disks
+* python tory network
+* python tory ram
+* python tory cpu
+* python tory pack
+* python tory user
+* python tory simple
 
-# Creators:
- Manal Abdalla
- Katie Johnson
- Justin Walker
+## Creators:
+  * Manal Abdalla
+  * Katie Johnson
+  * Justin Walker
 
-# Acknowledgements
- Thomas Bennett
- Michael Gilbert
+## Acknowledgements
+  * Thomas Bennett
+  * Michael Gilbert
